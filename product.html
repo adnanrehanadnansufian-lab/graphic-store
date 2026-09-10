@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ product.name }}</title>
+    <link rel="stylesheet" href="{{ url_for("static", filename="style.css") }}">
+</head>
+<body>
+<header>
+    <h1>Graphic Store</h1>
+    <nav>
+        <a href="{{ url_for("home") }}">Home</a>
+        <a href="{{ url_for("shop") }}">Shop</a>
+        <a href="{{ url_for("cart") }}">Cart</a>
+    </nav>
+</header>
+
+<main>
+    <div class="product-detail">
+        <div class="image-placeholder large">Design Preview</div>
+
+        <div>
+            <h2>{{ product.name }}</h2>
+            <p>{{ product.description }}</p>
+            <h3>${{ product.price }}</h3>
+            <a class="button" href="{{ url_for("add_to_cart", product_id=product.id) }}">
+                Add to Cart
+            </a>
+        </div>
+    </div>
+</main>
+</body>
+</html>

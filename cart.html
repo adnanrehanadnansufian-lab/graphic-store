@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart - Graphic Store</title>
+    <link rel="stylesheet" href="{{ url_for("static", filename="style.css") }}">
+</head>
+<body>
+<header>
+    <h1>Graphic Store</h1>
+    <nav>
+        <a href="{{ url_for("home") }}">Home</a>
+        <a href="{{ url_for("shop") }}">Shop</a>
+        <a href="{{ url_for("cart") }}">Cart</a>
+    </nav>
+</header>
+
+<main>
+    <h2>Your Cart</h2>
+
+    {% if products %}
+        {% for product in products %}
+        <div class="cart-item">
+            <div>
+                <h3>{{ product.name }}</h3>
+                <p>${{ product.price }}</p>
+            </div>
+            <a class="button danger" href="{{ url_for("remove_from_cart", product_id=product.id) }}">
+                Remove
+            </a>
+        </div>
+        {% endfor %}
+
+        <h2>Total: ${{ total }}</h2>
+        <a class="button" href="{{ url_for("checkout") }}">Checkout</a>
+    {% else %}
+        <p>Your cart is empty.</p>
+        <a class="button" href="{{ url_for("shop") }}">Go to Shop</a>
+    {% endif %}
+</main>
+</body>
+</html>
